@@ -1,0 +1,56 @@
+{
+  "name": "env-to-object",
+  "version": "0.0.0",
+  "description": "Maps environment variables to a configuration object.",
+  "author": {
+    "name": "Athan Reines",
+    "email": "kgryte@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Athan Reines",
+      "email": "kgryte@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
+    "codecov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/codecov/coverage --report lcovonly -- -R spec && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kgryte/node-env-to-object.git"
+  },
+  "keywords": [
+    "utilities",
+    "utils",
+    "env",
+    "environment",
+    "variables",
+    "object",
+    "config",
+    "configuration",
+    "map",
+    "obj",
+    "convert"
+  ],
+  "bugs": {
+    "url": "https://github.com/kgryte/node-env-to-object/issues"
+  },
+  "dependencies": {
+    "utils-deep-set": "^1.0.1",
+    "utils-json-parse": "^1.0.0",
+    "validate.io-nan": "^1.0.3",
+    "validate.io-object": "^1.0.4"
+  },
+  "devDependencies": {
+    "chai": "3.x.x",
+    "codecov.io": "^0.1.5",
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "2.x.x",
+    "mocha": "2.x.x"
+  },
+  "license": "MIT"
+}
