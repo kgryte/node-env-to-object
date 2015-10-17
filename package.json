@@ -1,6 +1,6 @@
 {
   "name": "env-to-object",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Maps environment variables to a configuration object.",
   "author": {
     "name": "Athan Reines",
