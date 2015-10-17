@@ -59,7 +59,7 @@ var out = env( map );
 
 An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) mapping __must__ include a `keypath`, which is a dot-delimited `object` path. By default, this module parses an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a `string`. The following types are supported:
 
-*	__string__: (__default__) coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. 
+*	__string__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string` (__default__). 
 *	__number__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`.
 *	__boolean__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `boolean`. The following values are supported:
 	-	`TRUE`
@@ -73,6 +73,19 @@ An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) ma
 	-	`F`
 	-	`f`
 *	__object__: [parse](https://github.com/kgryte/utils-json-parse) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a JSON `object`. Note that a value must be valid [JSON](https://github.com/kgryte/utils-json-parse).
+
+If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the corresponding configuration `keypath` will __not__ exist in the output `object`.
+
+``` javascript
+var map = {
+	'UNSET_ENV_VAR': {
+		'keypath': 'a.b.c'
+	}
+};
+
+var out = env( map );
+// returns {}
+```
 
 
 ## Examples
