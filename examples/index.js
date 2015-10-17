@@ -3,12 +3,12 @@
 var env = require( './../lib' ),
 	map = require( './env.json' );
 
-process.env[ 'DEFAULT' ] = 'beep';
-process.env[ 'STR' ] = 'boop';
-process.env[ 'NUM' ] = '1234.5';
-process.env[ 'BOOL' ] = 'true';
-process.env[ 'ARR' ] = '[1,2,3,4]';
-process.env[ 'NESTED' ] = '{"hello":"world"}';
+process.env[ 'DEFAULT' ] = process.env[ 'DEFAULT' ] || 'beep';
+process.env[ 'STR' ] = process.env[ 'STR' ] || 'boop';
+process.env[ 'NUM' ] = process.env[ 'NUM' ]  || '1234.5';
+process.env[ 'BOOL' ] = process.env[ 'BOOL' ] || 'true';
+process.env[ 'ARR' ] = process.env[ 'ARR' ] || '[1,2,3,4]';
+process.env[ 'NESTED' ] = process.env[ 'NESTED' ] || '{"hello":"world"}';
 
 var out = env( map );
 console.dir( out );

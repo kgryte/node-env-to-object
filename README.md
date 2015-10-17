@@ -153,6 +153,12 @@ To run the example code from the top-level application directory,
 $ node ./examples/index.js
 ```
 
+or, alternatively,
+
+``` bash
+$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='FALSE' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' node ./examples/index.js
+```
+
 
 ## Tests
 
