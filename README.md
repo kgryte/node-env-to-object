@@ -18,7 +18,7 @@ $ npm install env-to-object
 var env = require( 'env-to-object' );
 ```
 
-#### env( map )
+#### env( map[, options] )
 
 Maps [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to a configuration `object`.
 
@@ -66,6 +66,42 @@ An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) ma
 *	__object__
 *	__date__
 *	__regexp__
+
+The `function` accepts the following `options`:
+
+*	__parsers__: an `object` containing [environment variable](https://en.wikipedia.org/wiki/Environment_variable) parsers.
+
+	``` javascript
+	var map = {
+		'CUSTOM_TYPE': {
+			'keypath': 'custom',
+			'type': 'custom',
+			... // => options
+		}
+	};
+
+	var parsers = {
+		'custom': custom
+	};
+
+	function custom( str, opts ) {
+		var v = parseInt( str, 10 );
+		if ( v !== v ) {
+			return new TypeError( 'invalid value. Value must be an integer. Value: `' + str + '`.' );
+		}
+		return v * 6;
+	}
+
+	process.env[ 'CUSTOM_TYPE' ] = '5';
+
+	var out = env( map, parsers );
+	/*
+		{
+			'custom': 30
+		}
+	*/
+	```
+
 
 ===
 ##### string
