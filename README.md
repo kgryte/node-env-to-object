@@ -57,7 +57,7 @@ var out = env( map );
 */
 ```
 
-An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) mapping __must__ include a [`keypath`](https://github.com/kgryte/utils-deep-set), which is a dot-delimited `object` path. By default, this module parses an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a `string`. The following types are supported:
+An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) mapping __must__ include a [`keypath`](https://github.com/kgryte/utils-deep-set), which is a dot-delimited `object` path. By default, this module parses an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a `string`. The following [types](#types) are supported:
 
 *	[__string__](#string)
 *	[__number__](#number)
@@ -104,6 +104,8 @@ The `function` accepts the following `options`:
 
 
 ===
+## Types
+
 ##### string
 
 (__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. The `string` type supports the following options:
