@@ -59,13 +59,13 @@ var out = env( map );
 
 An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) mapping __must__ include a [`keypath`](https://github.com/kgryte/utils-deep-set), which is a dot-delimited `object` path. By default, this module parses an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a `string`. The following types are supported:
 
-*	__string__
-*	__number__
-*	__integer__
-*	__boolean__
-*	__object__
-*	__date__
-*	__regexp__
+*	[__string__](#string)
+*	[__number__](#number)
+*	[__integer__](#integer)
+*	[__boolean__](#boolean)
+*	[__object__](#object)
+*	[__date__](#date)
+*	[__regexp__](#regexp)
 
 The `function` accepts the following `options`:
 
