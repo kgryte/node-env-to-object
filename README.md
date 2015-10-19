@@ -59,9 +59,305 @@ var out = env( map );
 
 An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) mapping __must__ include a [`keypath`](https://github.com/kgryte/utils-deep-set), which is a dot-delimited `object` path. By default, this module parses an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a `string`. The following types are supported:
 
-*	__string__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string` (__default__). 
-*	__number__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`.
-*	__boolean__: coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `boolean`. The following values are supported:
+*	__string__
+*	__number__
+*	__integer__
+*	__boolean__
+*	__object__
+*	__date__
+*	__regexp__
+
+===
+##### string
+
+(__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. The `string` type supports the following options:
+
+* 	__oneof__: set of allowed values.
+
+	``` javascript
+	var map = {
+		'STR': {
+			'keypath': 'str',
+			'type': 'string',
+			'oneof': [
+				'beep',
+				'boop',
+				'bap'
+			]
+		}
+	};
+
+	process.env[ 'STR' ] = 'beep';
+	var out = env( map );
+	/*
+		{
+			'str': 'beep'
+		}
+	*/
+
+	process.env[ 'STR' ] = 'bop';
+	var out = env( map );
+	// => throws
+	```
+
+===
+##### number
+
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`. The `number` type supports the following options:
+
+*	__oneof__: set of allowed values.
+	
+	``` javascript
+	var map = {
+		'NUM': {
+			'keypath': 'num',
+			'type': 'number',
+			'oneof': [ 1, 2, 3 ]
+		}
+	};
+
+	process.env[ 'NUM' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'num': 2
+		}
+	*/
+
+	process.env[ 'NUM' ] = 'bop';
+	var out = env( map );
+	// => throws
+	```
+
+*	__min__: minimum value.
+
+	``` javascript
+	var map = {
+		'NUM': {
+			'keypath': 'num',
+			'type': 'number',
+			'min': 2
+		}
+	};
+
+	process.env[ 'NUM' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'num': 2
+		}
+	*/
+
+	process.env[ 'NUM' ] = '1';
+	var out = env( map );
+	// => throws
+	```
+
+* 	__max__: maximum value.
+
+	``` javascript
+	var map = {
+		'NUM': {
+			'keypath': 'num',
+			'type': 'number',
+			'max': 2
+		}
+	};
+
+	process.env[ 'NUM' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'num': 2
+		}
+	*/
+
+	process.env[ 'NUM' ] = '3';
+	var out = env( map );
+	// => throws
+	```
+
+*	__emin__: exclusive minimum value.
+
+	``` javascript
+	var map = {
+		'NUM': {
+			'keypath': 'num',
+			'type': 'number',
+			'emin': 2
+		}
+	};
+
+	process.env[ 'NUM' ] = '3';
+	var out = env( map );
+	/*
+		{
+			'num': 3
+		}
+	*/
+
+	process.env[ 'NUM' ] = '2';
+	var out = env( map );
+	// => throws
+	```
+
+*	__emax__: exclusive maximum value.
+
+	``` javascript
+	var map = {
+		'NUM': {
+			'keypath': 'num',
+			'type': 'number',
+			'emax': 4
+		}
+	};
+
+	process.env[ 'NUM' ] = '3';
+	var out = env( map );
+	/*
+		{
+			'num': 3
+		}
+	*/
+
+	process.env[ 'NUM' ] = '4';
+	var out = env( map );
+	// => throws
+	```
+
+===
+##### integer
+
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to an `integer`. The `integer` type supports the following options:
+
+*	__oneof__: set of allowed values.
+	
+	``` javascript
+	var map = {
+		'INT': {
+			'keypath': 'int',
+			'type': 'integer',
+			'oneof': [ 1, 2, 3 ]
+		}
+	};
+
+	process.env[ 'INT' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'int': 2
+		}
+	*/
+
+	process.env[ 'INT' ] = '2';
+	var out = env( map );
+	// => throws
+	```
+
+*	__min__: minimum value.
+
+	``` javascript
+	var map = {
+		'INT': {
+			'keypath': 'int',
+			'type': 'integer',
+			'min': 2
+		}
+	};
+
+	process.env[ 'INT' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'int': 2
+		}
+	*/
+
+	process.env[ 'INT' ] = '1';
+	var out = env( map );
+	// => throws
+	```
+
+* 	__max__: maximum value.
+
+	``` javascript
+	var map = {
+		'INT': {
+			'keypath': 'int',
+			'type': 'integer',
+			'max': 2
+		}
+	};
+
+	process.env[ 'INT' ] = '2';
+	var out = env( map );
+	/*
+		{
+			'int': 2
+		}
+	*/
+
+	process.env[ 'INT' ] = '3';
+	var out = env( map );
+	// => throws
+	```
+
+*	__emin__: exclusive minimum value.
+
+	``` javascript
+	var map = {
+		'INT': {
+			'keypath': 'int',
+			'type': 'integer',
+			'emin': 2
+		}
+	};
+
+	process.env[ 'INT' ] = '3';
+	var out = env( map );
+	/*
+		{
+			'int': 3
+		}
+	*/
+
+	process.env[ 'INT' ] = '2';
+	var out = env( map );
+	// => throws
+	```
+
+*	__emax__: exclusive maximum value.
+
+	``` javascript
+	var map = {
+		'INT': {
+			'keypath': 'int',
+			'type': 'integer',
+			'emax': 4
+		}
+	};
+
+	process.env[ 'INT' ] = '3';
+	var out = env( map );
+	/*
+		{
+			'int': 3
+		}
+	*/
+
+	process.env[ 'INT' ] = '4';
+	var out = env( map );
+	// => throws
+	```
+
+===
+##### boolean
+
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `boolean`. The `boolean` type supports the following options:
+
+*	__strict__: `boolean` indicating whether to accept only `true` and `false` as acceptable `boolean` strings. Default: `false`.
+
+In non-strict mode, the following values are supported:
 	-	`TRUE`
 	-	`True`
 	-	`true`
@@ -72,22 +368,151 @@ An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) ma
 	-	`false`
 	-	`F`
 	-	`f`
-*	__object__: [parse](https://github.com/kgryte/utils-json-parse) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a JSON `object`. Note that a value must be valid [JSON](https://github.com/kgryte/utils-json-parse).
-
-If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the corresponding configuration `keypath` will __not__ exist in the output `object`.
 
 ``` javascript
 var map = {
-	'UNSET_ENV_VAR': {
-		'keypath': 'a.b.c'
+	'BOOL': {
+		'keypath': 'bool',
+		'type': 'boolean'
 	}
 };
 
+process.env[ 'BOOL' ] = 'TRUE';
 var out = env( map );
-// returns {}
+/*
+	{
+		'bool': true
+	}
+*/
+
+process.env[ 'BOOL' ] = 'beep';
+var out = env( map );
+// => throws
+```
+
+To restrict the set of allowed values, set the `strict` option to `true`.
+
+``` javascript
+var map = {
+	'BOOL': {
+		'keypath': 'bool',
+		'type': 'boolean',
+		'strict': true
+	}
+};
+
+process.env[ 'BOOL' ] = 'false';
+var out = env( map );
+/*
+	{
+		'bool': false
+	}
+*/
+
+process.env[ 'BOOL' ] = 'TRUE';
+var out = env( map );
+// => throws
+```
+
+===
+##### object
+
+[Parse](https://github.com/kgryte/utils-json-parse) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a JSON `object`. Note that a value must be valid [JSON](https://github.com/kgryte/utils-json-parse).
+
+``` javascript
+var map = {
+	'OBJ': {
+		'keypath': 'obj',
+		'type': 'object'
+	}
+};
+
+process.env[ 'OBJ' ] = '{"beep":"boop"}';
+var out = env( map );
+/*
+	{
+		'obj': {
+			'beep': 'boop'
+		}
+	}
+*/
+
+process.env[ 'OBJ' ] = '{"beep:"boop"}';
+var out = env( map );
+// => throws
+```
+
+===
+##### date
+
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a `Date` object.
+
+``` javascript
+var map = {
+	'DATE': {
+		'keypath': 'date',
+		'type': 'date'
+	}
+};
+
+process.env[ 'DATE' ] = '2015-10-17';
+var out = env( map );
+/*
+	{
+		'date': <Date>
+	}
+*/
+
+process.env[ 'DATE' ] = 'beep';
+var out = env( map );
+// => throws
+```
+
+===
+##### regexp
+
+[Parse](https://github.com/kgryte/utils-regex-from-string) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) as a `RegExp`.
+
+``` javascript
+var map = {
+	'REGEXP': {
+		'keypath': 're',
+		'type': 'regexp'
+	}
+};
+
+process.env[ 'RE' ] = '/\\w+/';
+var out = env( map );
+/*
+	{
+		're': /\w+/
+	}
+*/
+
+process.env[ 'RE' ] = 'beep';
+var out = env( map );
+// => throws
 ```
 
 
+---
+## Notes
+
+*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the corresponding configuration `keypath` will __not__ exist in the output `object`.
+
+	``` javascript
+	var map = {
+		'UNSET_ENV_VAR': {
+			'keypath': 'a.b.c'
+		}
+	};
+
+	var out = env( map );
+	// returns {}
+	```
+
+
+---
 ## Examples
 
 ``` javascript
@@ -107,7 +532,8 @@ var map = {
 	},
 	'BOOL': {
 		'keypath': 'bool',
-		'type': 'boolean'
+		'type': 'boolean',
+		'strict': true
 	},
 	'ARR': {
 		'keypath': 'arr',
@@ -116,6 +542,57 @@ var map = {
 	'NESTED': {
 		'keypath': 'a.b.c.d',
 		'type': 'object'
+	},
+	"DATE": {
+		"keypath": "date",
+		"type": "date"
+	},
+	"REGEX": {
+		"keypath": "re",
+		"type": "regexp"
+	},
+	"INT": {
+		"keypath": "int",
+		"type": "integer"
+	},
+	"MIN": {
+		"keypath": "min",
+		"type": "number",
+		"min": 0
+	},
+	"MAX": {
+		"keypath": "max",
+		"type": "integer",
+		"max": 1
+	},
+	"EMIN": {
+		"keypath": "emin",
+		"type": "integer",
+		"emin": 1023
+	},
+	"EMAX": {
+		"keypath": "emax",
+		"type": "number",
+		"emax": 65536
+	},
+	"ONEOF": {
+		"keypath": "oneof",
+		"type": "string",
+		"oneof": [
+			"beep",
+			"boop",
+			"bop"
+		]
+	},
+	"ONEOF2": {
+		"keypath": "oneof2",
+		"type": "integer",
+		"oneof": [
+			8000,
+			8080,
+			9000,
+			10001
+		]
 	}
 };
 
@@ -125,6 +602,15 @@ process.env[ 'NUM' ] = '1234.5';
 process.env[ 'BOOL' ] = 'true';
 process.env[ 'ARR' ] = '[1,2,3,4]';
 process.env[ 'NESTED' ] = '{"hello":"world"}';
+process.env[ 'DATE' ] = '2015-10-18T07:00:01.000Z';
+process.env[ 'REGEX'] = '/\\w+/';
+process.env[ 'INT' ] = '1234';
+process.env[ 'MIN' ] = '0';
+process.env[ 'MAX' ] = '1';
+process.env[ 'EMIN' ] = '1024';
+process.env[ 'EMAX' ] = '65535.9';
+process.env[ 'ONEOF' ] = 'boop';
+process.env[ 'ONEOF2' ] = '9000';
 
 var out = env( map );
 /*
@@ -142,7 +628,16 @@ var out = env( map );
 					}
 				}
 			}
-		}
+		},
+		'date': <date>,
+		're': /\w+/,
+		'int': 1234,
+		'min': 0,
+		'max': 1,
+		'emin': 1024,
+		'emax': 65535.9,
+		'oneof': 'boop',
+		'oneof2': 9000
 	}
 */
 ```
@@ -156,10 +651,11 @@ $ node ./examples/index.js
 or, alternatively,
 
 ``` bash
-$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='FALSE' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' node ./examples/index.js
+$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='false' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' DATE='2015-10-19T06:59:59.000Z' REGEX='/\\.+/' MIN=0 MAX=1 EMIN=1024 EMAX='65535.9' ONEOF=bop ONEOF2=8080 node ./examples/index.js
 ```
 
 
+---
 ## Tests
 
 ### Unit

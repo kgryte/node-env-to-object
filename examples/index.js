@@ -9,6 +9,15 @@ process.env[ 'NUM' ] = process.env[ 'NUM' ]  || '1234.5';
 process.env[ 'BOOL' ] = process.env[ 'BOOL' ] || 'true';
 process.env[ 'ARR' ] = process.env[ 'ARR' ] || '[1,2,3,4]';
 process.env[ 'NESTED' ] = process.env[ 'NESTED' ] || '{"hello":"world"}';
+process.env[ 'DATE' ] = process.env[ 'DATE' ] || '2015-10-18T07:00:01.000Z';
+process.env[ 'REGEX'] = process.env[ 'REGEX' ] || '/\\w+/';
+process.env[ 'INT' ] = process.env[ 'INT' ] || '1234';
+process.env[ 'MIN' ] = process.env[ 'MIN' ] || '0';
+process.env[ 'MAX' ] = process.env[ 'MAX' ] || '1';
+process.env[ 'EMIN' ] = process.env[ 'EMIN' ] || '1024';
+process.env[ 'EMAX' ] = process.env[ 'EMAX' ] || '65535.9';
+process.env[ 'ONEOF' ] = process.env[ 'ONEOF' ] || 'boop';
+process.env[ 'ONEOF2' ] = process.env[ 'ONEOF2' ] || '9000';
 
 var out = env( map );
 console.dir( out );
@@ -27,6 +36,15 @@ console.dir( out );
 					}
 				}
 			}
-		}
+		},
+		'date': <date>,
+		're': /\w+/,
+		'int': 1234,
+		'min': 0,
+		'max': 1,
+		'emin': 1024,
+		'emax': 65535.9,
+		'oneof': 'boop',
+		'oneof2': 9000
 	}
 */

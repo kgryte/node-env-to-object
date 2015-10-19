@@ -41,10 +41,21 @@
   "dependencies": {
     "utils-deep-set": "^1.0.1",
     "utils-json-parse": "^1.0.0",
+    "utils-merge2": "^1.0.0",
+    "utils-regex-from-string": "^1.0.0",
+    "validate.io-boolean-primitive": "^1.0.0",
+    "validate.io-contains": "^1.0.0",
+    "validate.io-function": "^1.0.2",
+    "validate.io-integer": "^1.0.5",
+    "validate.io-integer-array": "^1.0.0",
     "validate.io-nan": "^1.0.3",
-    "validate.io-object": "^1.0.4"
+    "validate.io-number-array": "^1.0.0",
+    "validate.io-number-primitive": "^1.0.0",
+    "validate.io-object": "^1.0.4",
+    "validate.io-string-array": "^1.0.0"
   },
   "devDependencies": {
+    "@kgryte/noop": "^1.0.0",
     "chai": "3.x.x",
     "codecov.io": "^0.1.5",
     "istanbul": "^0.3.0",
