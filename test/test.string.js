@@ -48,7 +48,7 @@ describe( 'string', function tests() {
 		}
 	});
 
-	it( 'should return an error if provided a `oneof` option which is not a string array', function test() {
+	it( 'should return an error if provided a `enum` option which is not a string array', function test() {
 		var values;
 		var err;
 		var i;
@@ -68,7 +68,7 @@ describe( 'string', function tests() {
 
 		for ( i = 0; i < values.length; i++ ) {
 			err = parse( 'beep', {
-				'oneof': values[ i ]
+				'enum': values[ i ]
 			});
 			assert.isTrue( err instanceof TypeError );
 		}
@@ -76,14 +76,14 @@ describe( 'string', function tests() {
 
 	it( 'should return an error if an environment variable is not one of a predefined set of values', function test() {
 		var err = parse( 'beep', {
-			'oneof': ['a','b','c']
+			'enum': ['a','b','c']
 		});
 		assert.isTrue( err instanceof Error );
 	});
 
 	it( 'should return a value which matches a value within a set of predefined values', function test() {
 		var v = parse( 'b', {
-			'oneof': ['a','b','c']
+			'enum': ['a','b','c']
 		});
 		assert.strictEqual( v, 'b' );
 	});

@@ -16,8 +16,8 @@ process.env[ 'MIN' ] = process.env[ 'MIN' ] || '0';
 process.env[ 'MAX' ] = process.env[ 'MAX' ] || '1';
 process.env[ 'EMIN' ] = process.env[ 'EMIN' ] || '1024';
 process.env[ 'EMAX' ] = process.env[ 'EMAX' ] || '65535.9';
-process.env[ 'ONEOF' ] = process.env[ 'ONEOF' ] || 'boop';
-process.env[ 'ONEOF2' ] = process.env[ 'ONEOF2' ] || '9000';
+process.env[ 'ENUM' ] = process.env[ 'ENUM' ] || 'boop';
+process.env[ 'ENUM2' ] = process.env[ 'ENUM2' ] || '9000';
 
 var out = env( map );
 console.dir( out );
@@ -44,7 +44,7 @@ console.dir( out );
 		'max': 1,
 		'emin': 1024,
 		'emax': 65535.9,
-		'oneof': 'boop',
-		'oneof2': 9000
+		'enum': 'boop',
+		'enum2': 9000
 	}
 */

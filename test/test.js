@@ -136,8 +136,8 @@ describe( 'env-to-object', function tests() {
 			'max': 1,
 			'emin': 1024,
 			'emax': 65535.9,
-			'oneof': 'beep',
-			'oneof2': 9000
+			'enum': 'beep',
+			'enum2': 9000
 		};
 
 		o = process.env;
@@ -159,8 +159,8 @@ describe( 'env-to-object', function tests() {
 			'MAX': '1',
 			'EMIN': '1024',
 			'EMAX': '65535.9',
-			'ONEOF': 'beep',
-			'ONEOF2': '9000',
+			'ENUM': 'beep',
+			'ENUM2': '9000',
 			'UNRECOGNIZED': 'woot'
 		};
 

@@ -110,14 +110,14 @@ The `function` accepts the following `options`:
 
 (__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. The `string` type supports the following options:
 
-* 	__oneof__: set of allowed values.
+* 	__enum__: set of allowed values.
 
 	``` javascript
 	var map = {
 		'STR': {
 			'keypath': 'str',
 			'type': 'string',
-			'oneof': [
+			'enum': [
 				'beep',
 				'boop',
 				'bap'
@@ -143,14 +143,14 @@ The `function` accepts the following `options`:
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`. The `number` type supports the following options:
 
-*	__oneof__: set of allowed values.
+*	__enum__: set of allowed values.
 	
 	``` javascript
 	var map = {
 		'NUM': {
 			'keypath': 'num',
 			'type': 'number',
-			'oneof': [ 1, 2, 3 ]
+			'enum': [ 1, 2, 3 ]
 		}
 	};
 
@@ -268,14 +268,14 @@ Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_varia
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to an `integer`. The `integer` type supports the following options:
 
-*	__oneof__: set of allowed values.
+*	__enum__: set of allowed values.
 	
 	``` javascript
 	var map = {
 		'INT': {
 			'keypath': 'int',
 			'type': 'integer',
-			'oneof': [ 1, 2, 3 ]
+			'enum': [ 1, 2, 3 ]
 		}
 	};
 
@@ -614,19 +614,19 @@ var map = {
 		"type": "number",
 		"emax": 65536
 	},
-	"ONEOF": {
-		"keypath": "oneof",
+	"ENUM": {
+		"keypath": "enum",
 		"type": "string",
-		"oneof": [
+		"enum": [
 			"beep",
 			"boop",
 			"bop"
 		]
 	},
-	"ONEOF2": {
-		"keypath": "oneof2",
+	"ENUM2": {
+		"keypath": "enum2",
 		"type": "integer",
-		"oneof": [
+		"enum": [
 			8000,
 			8080,
 			9000,
@@ -648,8 +648,8 @@ process.env[ 'MIN' ] = '0';
 process.env[ 'MAX' ] = '1';
 process.env[ 'EMIN' ] = '1024';
 process.env[ 'EMAX' ] = '65535.9';
-process.env[ 'ONEOF' ] = 'boop';
-process.env[ 'ONEOF2' ] = '9000';
+process.env[ 'ENUM' ] = 'boop';
+process.env[ 'ENUM2' ] = '9000';
 
 var out = env( map );
 /*
@@ -675,8 +675,8 @@ var out = env( map );
 		'max': 1,
 		'emin': 1024,
 		'emax': 65535.9,
-		'oneof': 'boop',
-		'oneof2': 9000
+		'enum': 'boop',
+		'enum2': 9000
 	}
 */
 ```
@@ -690,7 +690,7 @@ $ node ./examples/index.js
 or, alternatively,
 
 ``` bash
-$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='false' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' DATE='2015-10-19T06:59:59.000Z' REGEX='/\\.+/' MIN=0 MAX=1 EMIN=1024 EMAX='65535.9' ONEOF=bop ONEOF2=8080 node ./examples/index.js
+$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='false' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' DATE='2015-10-19T06:59:59.000Z' REGEX='/\\.+/' MIN=0 MAX=1 EMIN=1024 EMAX='65535.9' ENUM=bop ENUM2=8080 node ./examples/index.js
 ```
 
 

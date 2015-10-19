@@ -43,7 +43,7 @@ describe( 'validate: integer', function tests() {
 		}
 	});
 
-	it( 'should return an error if provided a `oneof` option which is not an integer array', function test() {
+	it( 'should return an error if provided a `enum` option which is not an integer array', function test() {
 		var values;
 		var err;
 		var i;
@@ -64,7 +64,7 @@ describe( 'validate: integer', function tests() {
 
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
-				'oneof': values[ i ]
+				'enum': values[ i ]
 			});
 			assert.isTrue( err instanceof TypeError );
 		}
@@ -220,7 +220,7 @@ describe( 'validate: integer', function tests() {
 			'max': 1,
 			'emin': 0,
 			'emax': 1,
-			'oneof': [1,2,3]
+			'enum': [1,2,3]
 		});
 		assert.isNull( err );
 

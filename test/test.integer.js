@@ -132,14 +132,14 @@ describe( 'integer', function tests() {
 
 	it( 'should return an error if a value is not one of a predefined set of values', function test() {
 		var err = parse( '2', {
-			'oneof': [1,3,4]
+			'enum': [1,3,4]
 		});
 		assert.isTrue( err instanceof Error );
 	});
 
 	it( 'should return an integer value which matches a value within a set of predefined values', function test() {
 		var v = parse( '2', {
-			'oneof': [1,2,3]
+			'enum': [1,2,3]
 		});
 		assert.strictEqual( v, 2 );
 	});
