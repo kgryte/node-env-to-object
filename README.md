@@ -393,19 +393,20 @@ Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_varia
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `boolean`. The `boolean` type supports the following options:
 
-*	__strict__: `boolean` indicating whether to accept only `true` and `false` as acceptable `boolean` strings. Default: `false`.
+*	__strict__: `boolean` indicating whether to accept only `'true'` and `'false'` as acceptable `boolean` strings. Default: `false`.
 
 In non-strict mode, the following values are supported:
-	-	`TRUE`
-	-	`True`
-	-	`true`
-	-	`T`
-	-	`t`
-	-	`FALSE`
-	-	`False`
-	-	`false`
-	-	`F`
-	-	`f`
+
+-	`TRUE`
+-	`True`
+-	`true`
+-	`T`
+-	`t`
+-	`FALSE`
+-	`False`
+-	`false`
+-	`F`
+-	`f`
 
 ``` javascript
 var map = {
