@@ -103,7 +103,7 @@ The `function` accepts the following `options`:
 	```
 
 
-===
+---
 ## Types
 
 #### string
