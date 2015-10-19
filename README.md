@@ -106,7 +106,7 @@ The `function` accepts the following `options`:
 ===
 ## Types
 
-##### string
+#### string
 
 (__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. The `string` type supports the following options:
 
@@ -139,7 +139,7 @@ The `function` accepts the following `options`:
 	```
 
 ===
-##### number
+#### number
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`. The `number` type supports the following options:
 
@@ -264,7 +264,7 @@ Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_varia
 	```
 
 ===
-##### integer
+#### integer
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to an `integer`. The `integer` type supports the following options:
 
@@ -389,7 +389,7 @@ Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_varia
 	```
 
 ===
-##### boolean
+#### boolean
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `boolean`. The `boolean` type supports the following options:
 
@@ -453,7 +453,7 @@ var out = env( map );
 ```
 
 ===
-##### object
+#### object
 
 [Parse](https://github.com/kgryte/utils-json-parse) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value as a JSON `object`. Note that a value must be valid [JSON](https://github.com/kgryte/utils-json-parse).
 
@@ -481,7 +481,7 @@ var out = env( map );
 ```
 
 ===
-##### date
+#### date
 
 Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a `Date` object.
 
@@ -507,7 +507,7 @@ var out = env( map );
 ```
 
 ===
-##### regexp
+#### regexp
 
 [Parse](https://github.com/kgryte/utils-regex-from-string) an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) as a `RegExp`.
 
