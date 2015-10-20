@@ -1,5 +1,5 @@
 TODO
 ====
 
-1. README
-2. argv
+1. argv
+2. 

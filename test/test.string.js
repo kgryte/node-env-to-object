@@ -48,44 +48,4 @@ describe( 'string', function tests() {
 		}
 	});
 
-	it( 'should return an error if provided a `enum` option which is not a string array', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			// undefined,
-			[],
-			['a',null],
-			['1',2],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = parse( 'beep', {
-				'enum': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
-	it( 'should return an error if an environment variable is not one of a predefined set of values', function test() {
-		var err = parse( 'beep', {
-			'enum': ['a','b','c']
-		});
-		assert.isTrue( err instanceof Error );
-	});
-
-	it( 'should return a value which matches a value within a set of predefined values', function test() {
-		var v = parse( 'b', {
-			'enum': ['a','b','c']
-		});
-		assert.strictEqual( v, 'b' );
-	});
-
 });

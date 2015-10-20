@@ -43,129 +43,6 @@ describe( 'validate: integer', function tests() {
 		}
 	});
 
-	it( 'should return an error if provided a `enum` option which is not an integer array', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			undefined,
-			[],
-			[1,NaN],
-			[1,'2'],
-			[1,2.5],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'enum': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
-	it( 'should return an error if provided a minimum value which is not a number primitive', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			undefined,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'min': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
-	it( 'should return an error if provided a maximum value which is not a number primitive', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			undefined,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'max': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
-	it( 'should return an error if provided an exclusive minimum value which is not a number primitive', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			undefined,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'emin': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
-	it( 'should return an error if provided an exclusive maximum value which is not a number primitive', function test() {
-		var values;
-		var err;
-		var i;
-
-		values = [
-			'5',
-			NaN,
-			true,
-			null,
-			undefined,
-			[],
-			{},
-			function(){}
-		];
-
-		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, {
-				'emax': values[ i ]
-			});
-			assert.isTrue( err instanceof TypeError );
-		}
-	});
-
 	it( 'should return an error if provided a radix which is not an integer', function test() {
 		var values;
 		var err;
@@ -215,12 +92,7 @@ describe( 'validate: integer', function tests() {
 		var err;
 
 		err = validate( {}, {
-			'radix': 16,
-			'min': 0,
-			'max': 1,
-			'emin': 0,
-			'emax': 1,
-			'enum': [1,2,3]
+			'radix': 16
 		});
 		assert.isNull( err );
 

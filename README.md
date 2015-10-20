@@ -108,282 +108,109 @@ The `function` accepts the following `options`:
 
 #### string
 
-(__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. The `string` type supports the following options:
+(__default__) Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `string`. 
 
-* 	__enum__: set of allowed values.
+``` javascript
+var map = {
+	'STR': {
+		'keypath': 'str',
+		'type': 'string'
+	}
+};
 
-	``` javascript
-	var map = {
-		'STR': {
-			'keypath': 'str',
-			'type': 'string',
-			'enum': [
-				'beep',
-				'boop',
-				'bap'
-			]
-		}
-	};
+process.env[ 'STR' ] = 'beep';
+var out = env( map );
+/*
+	{
+		'str': 'beep'
+	}
+*/
 
-	process.env[ 'STR' ] = 'beep';
-	var out = env( map );
-	/*
-		{
-			'str': 'beep'
-		}
-	*/
-
-	process.env[ 'STR' ] = 'bop';
-	var out = env( map );
-	// => throws
-	```
+process.env[ 'STR' ] = '1234';
+var out = env( map );
+/*
+	{
+		'str': '1234'
+	}
+*/
+```
 
 ===
 #### number
 
-Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`. The `number` type supports the following options:
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to a `number`.
 
-*	__enum__: set of allowed values.
 	
-	``` javascript
-	var map = {
-		'NUM': {
-			'keypath': 'num',
-			'type': 'number',
-			'enum': [ 1, 2, 3 ]
-		}
-	};
+``` javascript
+var map = {
+	'NUM': {
+		'keypath': 'num',
+		'type': 'number'
+	}
+};
 
-	process.env[ 'NUM' ] = '2';
-	var out = env( map );
-	/*
-		{
-			'num': 2
-		}
-	*/
+process.env[ 'NUM' ] = '2';
+var out = env( map );
+/*
+	{
+		'num': 2
+	}
+*/
 
-	process.env[ 'NUM' ] = 'bop';
-	var out = env( map );
-	// => throws
-	```
+process.env[ 'NUM' ] = 'bop';
+var out = env( map );
+// => throws
+```
 
-*	__min__: minimum value.
-
-	``` javascript
-	var map = {
-		'NUM': {
-			'keypath': 'num',
-			'type': 'number',
-			'min': 2
-		}
-	};
-
-	process.env[ 'NUM' ] = '2';
-	var out = env( map );
-	/*
-		{
-			'num': 2
-		}
-	*/
-
-	process.env[ 'NUM' ] = '1';
-	var out = env( map );
-	// => throws
-	```
-
-* 	__max__: maximum value.
-
-	``` javascript
-	var map = {
-		'NUM': {
-			'keypath': 'num',
-			'type': 'number',
-			'max': 2
-		}
-	};
-
-	process.env[ 'NUM' ] = '2';
-	var out = env( map );
-	/*
-		{
-			'num': 2
-		}
-	*/
-
-	process.env[ 'NUM' ] = '3';
-	var out = env( map );
-	// => throws
-	```
-
-*	__emin__: exclusive minimum value.
-
-	``` javascript
-	var map = {
-		'NUM': {
-			'keypath': 'num',
-			'type': 'number',
-			'emin': 2
-		}
-	};
-
-	process.env[ 'NUM' ] = '3';
-	var out = env( map );
-	/*
-		{
-			'num': 3
-		}
-	*/
-
-	process.env[ 'NUM' ] = '2';
-	var out = env( map );
-	// => throws
-	```
-
-*	__emax__: exclusive maximum value.
-
-	``` javascript
-	var map = {
-		'NUM': {
-			'keypath': 'num',
-			'type': 'number',
-			'emax': 4
-		}
-	};
-
-	process.env[ 'NUM' ] = '3';
-	var out = env( map );
-	/*
-		{
-			'num': 3
-		}
-	*/
-
-	process.env[ 'NUM' ] = '4';
-	var out = env( map );
-	// => throws
-	```
 
 ===
 #### integer
 
-Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to an `integer`. The `integer` type supports the following options:
+Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value to an `integer`.
 
-*	__enum__: set of allowed values.
-	
+``` javascript
+var map = {
+	'INT': {
+		'keypath': 'int',
+		'type': 'integer'
+	}
+};
+
+process.env[ 'INT' ] = '2';
+var out = env( map );
+/*
+	{
+		'int': 2
+	}
+*/
+
+process.env[ 'INT' ] = 'beep';
+var out = env( map );
+// => throws
+```
+
+The `integer` type has the following `options`:
+
+*	__radix__: an `integer` on the interval `[2,36]`.
+
 	``` javascript
 	var map = {
 		'INT': {
 			'keypath': 'int',
 			'type': 'integer',
-			'enum': [ 1, 2, 3 ]
+			'radix': 2
 		}
 	};
-
-	process.env[ 'INT' ] = '2';
-	var out = env( map );
-	/*
-		{
-			'int': 2
-		}
-	*/
-
-	process.env[ 'INT' ] = '2';
-	var out = env( map );
-	// => throws
-	```
-
-*	__min__: minimum value.
-
-	``` javascript
-	var map = {
-		'INT': {
-			'keypath': 'int',
-			'type': 'integer',
-			'min': 2
-		}
-	};
-
-	process.env[ 'INT' ] = '2';
-	var out = env( map );
-	/*
-		{
-			'int': 2
-		}
-	*/
 
 	process.env[ 'INT' ] = '1';
 	var out = env( map );
-	// => throws
-	```
-
-* 	__max__: maximum value.
-
-	``` javascript
-	var map = {
-		'INT': {
-			'keypath': 'int',
-			'type': 'integer',
-			'max': 2
-		}
-	};
-
-	process.env[ 'INT' ] = '2';
-	var out = env( map );
 	/*
 		{
-			'int': 2
-		}
-	*/
-
-	process.env[ 'INT' ] = '3';
-	var out = env( map );
-	// => throws
-	```
-
-*	__emin__: exclusive minimum value.
-
-	``` javascript
-	var map = {
-		'INT': {
-			'keypath': 'int',
-			'type': 'integer',
-			'emin': 2
-		}
-	};
-
-	process.env[ 'INT' ] = '3';
-	var out = env( map );
-	/*
-		{
-			'int': 3
+			'int': 1
 		}
 	*/
 
 	process.env[ 'INT' ] = '2';
-	var out = env( map );
-	// => throws
-	```
-
-*	__emax__: exclusive maximum value.
-
-	``` javascript
-	var map = {
-		'INT': {
-			'keypath': 'int',
-			'type': 'integer',
-			'emax': 4
-		}
-	};
-
-	process.env[ 'INT' ] = '3';
-	var out = env( map );
-	/*
-		{
-			'int': 3
-		}
-	*/
-
-	process.env[ 'INT' ] = '4';
 	var out = env( map );
 	// => throws
 	```
@@ -593,45 +420,6 @@ var map = {
 	"INT": {
 		"keypath": "int",
 		"type": "integer"
-	},
-	"MIN": {
-		"keypath": "min",
-		"type": "number",
-		"min": 0
-	},
-	"MAX": {
-		"keypath": "max",
-		"type": "integer",
-		"max": 1
-	},
-	"EMIN": {
-		"keypath": "emin",
-		"type": "integer",
-		"emin": 1023
-	},
-	"EMAX": {
-		"keypath": "emax",
-		"type": "number",
-		"emax": 65536
-	},
-	"ENUM": {
-		"keypath": "enum",
-		"type": "string",
-		"enum": [
-			"beep",
-			"boop",
-			"bop"
-		]
-	},
-	"ENUM2": {
-		"keypath": "enum2",
-		"type": "integer",
-		"enum": [
-			8000,
-			8080,
-			9000,
-			10001
-		]
 	}
 };
 
@@ -644,12 +432,6 @@ process.env[ 'NESTED' ] = '{"hello":"world"}';
 process.env[ 'DATE' ] = '2015-10-18T07:00:01.000Z';
 process.env[ 'REGEX'] = '/\\w+/';
 process.env[ 'INT' ] = '1234';
-process.env[ 'MIN' ] = '0';
-process.env[ 'MAX' ] = '1';
-process.env[ 'EMIN' ] = '1024';
-process.env[ 'EMAX' ] = '65535.9';
-process.env[ 'ENUM' ] = 'boop';
-process.env[ 'ENUM2' ] = '9000';
 
 var out = env( map );
 /*
@@ -670,13 +452,7 @@ var out = env( map );
 		},
 		'date': <date>,
 		're': /\w+/,
-		'int': 1234,
-		'min': 0,
-		'max': 1,
-		'emin': 1024,
-		'emax': 65535.9,
-		'enum': 'boop',
-		'enum2': 9000
+		'int': 1234
 	}
 */
 ```
@@ -690,7 +466,7 @@ $ node ./examples/index.js
 or, alternatively,
 
 ``` bash
-$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='false' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' DATE='2015-10-19T06:59:59.000Z' REGEX='/\\.+/' MIN=0 MAX=1 EMIN=1024 EMAX='65535.9' ENUM=bop ENUM2=8080 node ./examples/index.js
+$ DEFAULT=boop STR=beep NUM='5432.1' BOOL='false' ARR='[4,3,2,1]' NESTED='{"world":"hello"}' DATE='2015-10-19T06:59:59.000Z' REGEX='/\\.+/' node ./examples/index.js
 ```
 
 

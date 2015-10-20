@@ -131,13 +131,7 @@ describe( 'env-to-object', function tests() {
 			},
 			'date': new Date( '2015-10-18' ),
 			're': /\w+/,
-			'int': -11,
-			'min': 0.5,
-			'max': 1,
-			'emin': 1024,
-			'emax': 65535.9,
-			'enum': 'beep',
-			'enum2': 9000
+			'int': -11
 		};
 
 		o = process.env;
@@ -155,12 +149,6 @@ describe( 'env-to-object', function tests() {
 			'DATE': '2015-10-18',
 			'REGEX': '/\\w+/',
 			'INT': '-11',
-			'MIN': '0.5',
-			'MAX': '1',
-			'EMIN': '1024',
-			'EMAX': '65535.9',
-			'ENUM': 'beep',
-			'ENUM2': '9000',
 			'UNRECOGNIZED': 'woot'
 		};
 
