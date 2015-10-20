@@ -149,11 +149,11 @@ var map = {
 	}
 };
 
-process.env[ 'NUM' ] = '2';
+process.env[ 'NUM' ] = '3.14';
 var out = env( map );
 /*
 	{
-		'num': 2
+		'num': 3.14
 	}
 */
 
