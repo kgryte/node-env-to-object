@@ -224,16 +224,8 @@ Coerce an [environment variable](https://en.wikipedia.org/wiki/Environment_varia
 
 In non-strict mode, the following values are supported:
 
--	`TRUE`
--	`True`
--	`true`
--	`T`
--	`t`
--	`FALSE`
--	`False`
--	`false`
--	`F`
--	`f`
+-	`TRUE`, `True`, `true`, `T`, `t`
+-	`FALSE`, `False`, `false`, `F`, `f`
 
 ``` javascript
 var map = {
