@@ -69,7 +69,7 @@ An [environment variable](https://en.wikipedia.org/wiki/Environment_variable) ma
 
 The `function` accepts the following `options`:
 
-*	__parsers__: an `object` containing [environment variable](https://en.wikipedia.org/wiki/Environment_variable) parsers.
+*	__parsers__: an `object` containing [environment variable](https://en.wikipedia.org/wiki/Environment_variable) parsers. Each `key` should correspond to a defined `type`, and each `value` should be a `function` which accepts an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) value and any associated `options`.
 
 	``` javascript
 	var map = {
