@@ -303,7 +303,7 @@ var out = env( map );
 	}
 */
 
-process.env[ 'OBJ' ] = '[1,2,3,'4',null]';
+process.env[ 'OBJ' ] = '[1,2,3,"4",null]';
 var out = env( map );
 /*
 	{
